@@ -1,5 +1,4 @@
 import Home from "./Home";
-import Simplify from "./Simplify";
 
 function App() {
   return (
