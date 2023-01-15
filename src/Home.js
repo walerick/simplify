@@ -9,7 +9,7 @@ const Home = () => {
   async function onSubmit(event) {
     event.preventDefault();
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: "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",
     });
     const openai = new OpenAIApi(configuration);
     try {
