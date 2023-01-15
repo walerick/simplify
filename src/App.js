@@ -1,10 +1,10 @@
 import Home from "./Home";
+import React from "react";
 
 function App() {
   return (
     <div className="App">
       <Home></Home>
-      {/* <Simplify></Simplify> */}
     </div>
   );
 }

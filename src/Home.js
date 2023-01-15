@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -8,7 +9,7 @@ const Home = () => {
   async function onSubmit(event) {
     event.preventDefault();
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: "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",
     });
     const openai = new OpenAIApi(configuration);
     try {
