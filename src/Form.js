@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const Form = () => {
   const [textInput, setTextInput] = useState("");
-  const [result, setResult] = useState();
+  const [result, setResult] = useState([]);
 
   const onSubmit = async (text) => {
     text.preventDefault();
@@ -14,18 +14,28 @@ const Form = () => {
         body: JSON.stringify({ prompt: textInput }),
       });
       const responseText = await response.text();
-      setResult(responseText);
-      // Use the response text here
-      console.log(responseText);
+      let responseArray = responseText.split(" ");
+      let currentIndex = 0;
+      let displayResult = "";
+      const displayResponse = () => {
+        if (currentIndex < responseArray.length) {
+          displayResult += responseArray[currentIndex] + " ";
+          setResult(displayResult);
+          currentIndex++;
+          setTimeout(displayResponse, 250);
+        }
+      };
+      displayResponse();
     } catch (error) {
       console.log(error);
+      setResult("Error generating response");
     }
   };
   return (
     <main className="home">
       <h3>Simplify words</h3>
       <form onSubmit={onSubmit}>
-        <input
+        <textarea
           type="text"
           name="texts"
           placeholder="Text here..."
