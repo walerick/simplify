@@ -1,12 +1,12 @@
-// import Home from "./Home";
+import Home from "./Home";
 import Form from "./Form";
 import React from "react";
 
 function App() {
   return (
     <div className="App">
-      {/* <Home></Home> */}
-      <Form></Form>
+      <Home></Home>
+      {/* <Form></Form> */}
     </div>
   );
 }

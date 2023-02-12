@@ -1,48 +1,49 @@
-// import React from "react";
-// import { useState } from "react";
-// const { Configuration, OpenAIApi } = require("openai");
+import React from "react";
+import { useState } from "react";
+const { Configuration, OpenAIApi } = require("openai");
+const { OPENAI_API_KEY } = import.meta.env;
 
-// const Home = () => {
-//   const [textInput, setTextInput] = useState("");
-//   const [result, setResult] = useState();
+const Home = () => {
+  const [textInput, setTextInput] = useState("");
+  const [result, setResult] = useState();
 
-//   async function onSubmit(event) {
-//     event.preventDefault();
-//     const configuration = new Configuration({
-//       apiKey: "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",
-//     });
-//     const openai = new OpenAIApi(configuration);
-//     try {
-//       const response = await openai.createCompletion({
-//         model: "text-davinci-003",
-//         prompt: ` ${textInput}, summarize this to a 3 years old containing not more than 30 words.`,
-//         temperature: 0.9,
-//         max_tokens: 100,
-//       });
-//       setResult(response.data.choices[0].text);
-//     } catch (err) {
-//       console.log(err);
-//       setResult("Error generating response");
-//     }
-//   }
+  async function onSubmit(event) {
+    event.preventDefault();
+    const configuration = new Configuration({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+    const openai = new OpenAIApi(configuration);
+    try {
+      const response = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: ` ${textInput}, summarize this to a 3 years old containing not more than 30 words.`,
+        temperature: 0.9,
+        max_tokens: 100,
+      });
+      setResult(response.data.choices[0].text);
+    } catch (err) {
+      console.log(err);
+      setResult("Error generating response");
+    }
+  }
 
-//   return (
-//     <main className="home">
-//       <h3>Simplify words</h3>
-//       <form onSubmit={onSubmit}>
-//         <input
-//           type="text"
-//           name="texts"
-//           placeholder="Text here..."
-//           value={textInput}
-//           onChange={(e) => setTextInput(e.target.value)}
-//         />
-//         <input type="submit" value="Simplify" />
-//       </form>
+  return (
+    <main className="home">
+      <h3>Simplify words</h3>
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          name="texts"
+          placeholder="Text here..."
+          value={textInput}
+          onChange={(e) => setTextInput(e.target.value)}
+        />
+        <input type="submit" value="Simplify" />
+      </form>
 
-//       <div className="result">{result}</div>
-//     </main>
-//   );
-// };
+      <div className="result">{result}</div>
+    </main>
+  );
+};
 
-// export default Home;
+export default Home;
