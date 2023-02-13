@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 const { Configuration, OpenAIApi } = require("openai");
-const { OPENAI_API_KEY } = import.meta.env;
 
 const Home = () => {
   const [textInput, setTextInput] = useState("");
@@ -10,7 +9,7 @@ const Home = () => {
   async function onSubmit(event) {
     event.preventDefault();
     const configuration = new Configuration({
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: process.env.REACT_APP_OPENAI_API_KEY,
     });
     const openai = new OpenAIApi(configuration);
     try {
@@ -31,7 +30,7 @@ const Home = () => {
     <main className="home">
       <h3>Simplify words</h3>
       <form onSubmit={onSubmit}>
-        <input
+        <textarea
           type="text"
           name="texts"
           placeholder="Text here..."
