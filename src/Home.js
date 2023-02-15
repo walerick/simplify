@@ -15,11 +15,15 @@ const Home = () => {
     try {
       const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: ` ${textInput}, summarize this to a 3 years old containing not more than 30 words.`,
+        prompt: `Summarize this to a 3 years old containing not more than 30 words: ${textInput}`,
         temperature: 0.9,
         max_tokens: 100,
       });
-      setResult(response.data.choices[0].text);
+      const words = response.data.choices[0].text.split(" ");
+      for (let i = 0; i < words.length; i++) {
+        setResult(words.slice(0, i + 1).join(" "));
+        await new Promise((resolve) => setTimeout(resolve, 300)); // Delay for 300 milliseconds between each word
+      }
     } catch (err) {
       console.log(err);
       setResult("Error generating response");
