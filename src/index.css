@@ -79,8 +79,8 @@
 
 .home .result span {
   display: inline-block;
-  marginLeft: -100%;
-  animation: slide 10s linear forwards
+  margin-left: -100%;
+  animation: slide 10s linear forwards;
 }
 
 @keyframes slide {
