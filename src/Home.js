@@ -19,11 +19,7 @@ const Home = () => {
         temperature: 0.9,
         max_tokens: 100,
       });
-      const words = response.data.choices[0].text.split(" ");
-      for (let i = 0; i < words.length; i++) {
-        setResult(words.slice(0, i + 1).join(" "));
-        await new Promise((resolve) => setTimeout(resolve, 300)); // Delay for 300 milliseconds between each word
-      }
+      setResult(response.data.choices[0].text);
     } catch (err) {
       console.log(err);
       setResult("Error generating response");

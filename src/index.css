@@ -77,11 +77,11 @@
   /* overflow: hidden; */
 }
 
-.home .result span {
+/* .home .result span {
   display: inline-block;
-  /* margin-left: -100%;
-  animation: slide 10s linear; */
-}
+  margin-left: -100%;
+  animation: slide 10s linear;
+} */
 
 /* @keyframes slide {
   100% {
