@@ -79,12 +79,12 @@
 
 .home .result span {
   display: inline-block;
-  margin-left: -100%;
-  animation: slide 10s linear;
+  /* margin-left: -100%;
+  animation: slide 10s linear; */
 }
 
-@keyframes slide {
+/* @keyframes slide {
   100% {
     margin-left: 0%;
   }
-}
+} */
