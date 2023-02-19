@@ -15,7 +15,14 @@ const Home = () => {
     try {
       const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: `Summarize this to a 3 years old containing not more than 30 words: ${textInput}`,
+        prompt: `Prompt: Given the following text, please generate a concise summary of the main points:
+        [${textInput}]
+        Please generate a summary that captures the most important information and key ideas from the input. The summary should be no longer than three to four sentences and should be written in a clear and concise manner.
+        The following conditions must be met before proceeding to execute the prompt above:
+        The given text must not be empty. e.g [].
+        The given text must not involve mathematical calculations e.g. 2+3.
+        The given text must not contain only one word. e.g Boy.
+        If the conditions are not met , give an Error response relating to the conditions mentioned above.`,
         temperature: 0.9,
         max_tokens: 100,
       });
