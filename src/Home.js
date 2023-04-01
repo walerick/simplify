@@ -8,6 +8,14 @@ const Home = () => {
 
   async function onSubmit(event) {
     event.preventDefault();
+    if (!textInput.trim()) {
+      setResult("Please enter some text.");
+      return;
+    }
+    if (/^\d+(\.\d+)?(\s*[+\-*/]\s*\d+(\.\d+)?)+$/.test(textInput)) {
+      setResult("Oops, can't solve mathematical calculations");
+      return;
+    }
     const configuration = new Configuration({
       apiKey: process.env.REACT_APP_OPENAI_API_KEY,
     });
@@ -15,14 +23,8 @@ const Home = () => {
     try {
       const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: `Prompt: Given the following text, please generate a concise summary of the main points:
-        [${textInput}]
-        Please generate a summary that captures the most important information and key ideas from the input. The summary should be no longer than three to four sentences and should be written in a clear and concise manner.
-        The following conditions must be met before proceeding to execute the prompt above:
-        The given text must not be empty. e.g [].
-        The given text must not involve mathematical calculations e.g. 2+3.
-        The given text must not contain only one word. e.g Boy.
-        If the conditions are not met , give an Error response relating to the conditions mentioned above.`,
+        prompt: `Please simplify and summarize this to a 5 years old:
+        [${textInput}]`,
         temperature: 0.9,
         max_tokens: 100,
       });
